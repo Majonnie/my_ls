@@ -1,3 +1,10 @@
+/*
+** ETNA PROJECT, 04/01/2022 by bonhom_j
+** /Users/majonnie/Desktop/ETNA/Projets/my_ls
+** File description:
+**      Tests avec argc et argv
+*/
+
 #include <stdio.h>
 
 int main(int argc, char **argv)
