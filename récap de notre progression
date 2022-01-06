@@ -1,0 +1,9 @@
+-l --> en cours (joh)
+-R
+-r
+-d
+-t
+-a --> fait 
+-A
+-L
+$> ./my_ls -l /dev/ /usr/sbin
