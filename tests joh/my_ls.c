@@ -5,11 +5,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/types.h>
 #include <sys/stat.h>
 #include <time.h>
+#include <pwd.h>
+#include <grp.h>
 
 void my_ls(const char *dir)
 {
+
 	//int op_l = 0;
     struct dirent *d;  // on créé un objet dirent pour avoir accés à ses fonctions
     /*la fonction DIR permet de naviguer dans les fichiers
@@ -32,23 +36,35 @@ void my_ls(const char *dir)
 
 	while ((d = readdir(dh)) != NULL)
 	{
-		time_t rawtime;
-		struct tm *info;
-		char buffer[80];
+	 	struct stat attrib;
+	 	stat(d->d_name, &attrib);
+	 	char time[50];
+     	strftime(time, 50, "%Y-%m %H:%M", localtime(&attrib.st_mtime));
 
-		time( &rawtime );
+		struct stat fileStat;
+		stat(d->d_name, &fileStat);
+		//si le programme rencontre des fichiers cachés.
+        if (d->d_name[0] == '.')
+            continue;
+		printf( (S_ISDIR(fileStat.st_mode)) ? "d" : "-");
+		printf( (fileStat.st_mode & S_IRUSR) ? "r" : "-");
+		printf( (fileStat.st_mode & S_IWUSR) ? "w" : "-");
+		printf( (fileStat.st_mode & S_IXUSR) ? "x" : "-");
+		printf( (fileStat.st_mode & S_IRGRP) ? "r" : "-");
+		printf( (fileStat.st_mode & S_IWGRP) ? "w" : "-");
+		printf( (fileStat.st_mode & S_IXGRP) ? "x" : "-");
+		printf( (fileStat.st_mode & S_IROTH) ? "r" : "-");
+		printf( (fileStat.st_mode & S_IWOTH) ? "w" : "-");
+		printf( (fileStat.st_mode & S_IXOTH) ? "x " : "- ");
 
-		info = localtime( &rawtime );
-
-		strftime(buffer,80,"%b  %d %H:%M", info);
         //si le programme rencontre des fichiers cachés.
         if (d->d_name[0] == '.')
             continue;
-        printf("%s %s \n", buffer, d->d_name);
+        printf("%s%s \n\n", ctime(&attrib.st_atime), d->d_name);
     }
 }
 
 int main ()
 {
-		my_ls(".");
+	my_ls(".");
 }
