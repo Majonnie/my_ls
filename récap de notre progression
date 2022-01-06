@@ -7,3 +7,21 @@
 -A
 -L
 $> ./my_ls -l /dev/ /usr/sbin
+
+
+fonctions autorisées: 
+    opendir  
+    readdir
+    closedir
+    stat -> infos d'un fichier.
+    lstat -> surement la même chose que stat.
+    getpwuid -> avoir le user du owner d'un fichier.
+    getgrgid -^
+    getcwd
+    ctime / ctime_r / strftime / localtime / localtime_r -> avoir heure et date.
+    readlink
+    getopt
+    malloc
+    free
+    errno / strerror -> gerer les erreurs.
+    write
