@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <errno.h>
 #include <dirent.h> /*Permet d'utiliser opendir, readdir, etc*/
 
 int main(int argc, char **argv)
