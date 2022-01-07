@@ -1,17 +1,16 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include <stdlib.h> /* À supprimer ??*/
 
 #include <dirent.h> /*Permet d'utiliser opendir, readdir, etc*/
 
-#include "onesttropbg.h"
+#include "header.h"
 
 int main(int argc, char **argv)
 {
-    my_putnbr(argc);
-    my_putchar('\n');
-    my_putstr(argv[1]);
-    my_putchar('\n');
-    my_putchar('\n');
+    my_debugnbr(argc);
+    if (argc > 1)
+    {
+        my_debugstr(argv[1]);
+    }
 
     struct dirent *sd;
 
@@ -20,21 +19,20 @@ int main(int argc, char **argv)
 
     if (rep == NULL) /* Si le dossier n'a pas pu être ouvert */
     {
-        my_putstr("Problème d'ouverture.");
+        my_putstr("Problème d'ouverture.\n");
         exit(1); /* (mauvais chemin par exemple) */
     }
 
-    my_putstr("Le dossier a été ouvert avec succès");
-    my_putchar('\n');
+    my_putstr("Le dossier a été ouvert avec succès\n");
 
     while ((sd = readdir(rep)) != NULL)
     {
+        /* Commencer par gérer les options -a et-A */
+
         if (sd->d_name[0] != '.')
         {
             /* Changer l'affichage (en ligne la plupart du temps)*/
-            const char *prompt = ">>";
-            my_putstr(prompt);
-            my_putstr("   ");
+            my_putstr(">>  ");
             my_putstr(sd->d_name);
             my_putchar('\n');
         }
@@ -42,12 +40,12 @@ int main(int argc, char **argv)
 
     if (closedir(rep) == -1) /* S'il y a eu un souci avec la fermeture */
     {
-        my_putstr("Problème de fermeture.");
+        my_putstr("Problème de fermeture.\n");
         exit(-1);
     }
 
-    my_putstr("Le dossier a été fermé avec succès");
-    my_putchar('\n');
-
+    my_putstr("Le dossier a été ouvert et fermé avec succès\n");
+    my_debugstr("uwu");
+    my_putstr("Fin owo\n");
     return 0;
 }

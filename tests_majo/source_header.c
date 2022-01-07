@@ -51,13 +51,22 @@ void my_putnbr(int n)
     }
 }
 
-const char *my_debug(const char *str)
+const char *my_debugstr(const char *str)
 {
 #ifdef DEBUG
     my_putstr(str);
     my_putchar('\n');
 #endif
     return (str);
+}
+
+int my_debugnbr(int n)
+{
+#ifdef DEBUG
+    my_putnbr(n);
+    my_putchar('\n');
+#endif
+    return (n);
 }
 
 //Permet de tester les fonctions définies ci-dessus (écrire -DTEST lors de la compilation)
@@ -68,7 +77,8 @@ int main(void)
     my_putstr("ui");
     my_putchar('\n');
 
-    my_debug("Messages de debug : affichés.");
+    my_debugstr("Messages de debug : affichés.");
+    my_debugnbr(69);
 }
 
 #endif

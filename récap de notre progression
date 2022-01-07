@@ -1,11 +1,14 @@
 -l --> en cours (joh)
--R
--r
--d
--t
--a --> fait 
--A
--L
+-R --> liste récursivement les dossiers rencontrés
+-r --> (inverse l'ordre du tri) --> à faire une fois tout fait, pour vérifier que ça fonctionne sur tout ?
+-d --> (list directory entries instead of contents, and do not dereference symbolic links)q
+-t --> (permet d'afficher les fichiers du plus récemment modifié au moins récemment modifié)
+-a --> fait
+-A --> (comme -a mais n'affiche pas . et .. (si -a et -A sont présents, -a prend le dessus))
+-L --> (when  showing  file  information  for  a  symbolic  link,
+    show  information for the file the link references rather than for the link itself)
+-1 --> force à n'avoir qu'une entrée par ligne
+
 $> ./my_ls -l /dev/ /usr/sbin
 
 
@@ -20,7 +23,7 @@ fonctions autorisées:
     getcwd
     ctime / ctime_r / strftime / localtime / localtime_r -> avoir heure et date.
     readlink
-    getopt
+    getopt -> en cours (Majo)
     malloc
     free
     errno / strerror -> gerer les erreurs.
