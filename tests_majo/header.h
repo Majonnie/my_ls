@@ -12,7 +12,12 @@ void my_putstr(const char *str);
 
 void my_putnbr(int n);
 
+char my_debugchar(char c);
+
 const char *my_debugstr(const char *str);
 
 int my_debugnbr(int n);
+
+int check_arg(int argc, char *argv[]);
+
 #endif

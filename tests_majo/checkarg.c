@@ -30,9 +30,9 @@ int check_arg(int argc, char *argv[])
             switch (opt)
             {
             case 'l':
-                my_putstr("Option : ");
-                my_putchar(opt);
-                my_putchar('\n');
+                my_debugstr("Option : ");
+                my_debugchar(opt);
+                my_debugchar('\n');
                 break;
             case 'R':
                 my_putstr("Option : ");
