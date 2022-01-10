@@ -20,4 +20,6 @@ int my_debugnbr(int n);
 
 int check_arg(int argc, char *argv[]);
 
+int base_ls(int argc, char *argv[]);
+
 #endif

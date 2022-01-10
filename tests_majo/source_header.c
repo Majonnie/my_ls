@@ -7,6 +7,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <dirent.h> /*Permet d'utiliser opendir, readdir, etc*/
 
 void my_putchar(char c)
 {
@@ -191,11 +192,50 @@ int check_arg(int argc, char *argv[])
         my_debugstr("Au moins un fichier a été passé en paramètre.");
     }
 
-    exit(EXIT_SUCCESS);
+    //exit(EXIT_SUCCESS);
+    return (0);
 
 }
 
 
+int base_ls(int argc, char *argv[])
+{
+    struct dirent *sd;
+
+    DIR *rep = NULL;
+    //Remplacer argv[1] par le 1er (?) dossier après les options.
+    rep = opendir(argv[1]); /* Ouverture d'un dossier */
+
+    if (rep == NULL) /* Si le dossier n'a pas pu être ouvert */
+    {
+        //Gérer les différents types d'erreurs
+        my_putstr("Problème d'ouverture.\n");
+        exit(1); /* (mauvais chemin par exemple) */
+    }
+
+    my_debugstr("Le dossier a été ouvert avec succès\n");
+
+    while ((sd = readdir(rep)) != NULL)
+    {
+        /* Commencer par gérer les options -a et-A */
+
+        if (sd->d_name[0] != '.')
+        {
+            /* Changer l'affichage (en ligne la plupart du temps)*/
+            my_putstr(">>  ");
+            my_putstr(sd->d_name);
+            my_putchar('\n');
+        }
+    }
+
+    if (closedir(rep) == -1) /* S'il y a eu un souci avec la fermeture */
+    {
+        my_putstr("Problème de fermeture.\n");
+        exit(-1);
+    }
+
+    return (argc);
+}
 
 
 
@@ -207,11 +247,14 @@ int main(int argc, char **argv)
     my_putstr("ui");
     my_putchar('\n');
 
-    //my_debugchar('x');
+    my_putstr("test\n");
+
+    my_debugchar('x');
     my_debugstr("Messages de debug : affichés.");
     my_debugnbr(69);
 
-    check_arg(argc, argv);
+    //check_arg(argc, argv);
+    base_ls(argc, argv);
 }
 
 #endif
