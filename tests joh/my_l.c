@@ -12,16 +12,15 @@
 #include <grp.h>
 #include "onesttropbg.h"
 
-void my_ls(const char *dir)
+void my_l(char *dir)
 {
-	 
 	//int op_l = 0;
     struct dirent *d;  // on créé un objet dirent pour avoir accés à ses fonctions
     /*la fonction DIR permet de naviguer dans les fichiers
     la ligne suivante permet d'ouvrir le fichier demandé*/
 	DIR *dh = opendir(dir);  
 
-     //si on ne peut pas acceder au dossier, grace à la 3e librairie, on va gerer les erreurs.
+    //si on ne peut pas acceder au dossier, grace à la 3e librairie, on va gerer les erreurs.
     // if (!dh)
 	// {
 	// 	if (errno = ENOENT) // "ENOENT Directory does not exist, or name is an empty string." Explication du man opendir.
@@ -139,5 +138,5 @@ void my_ls(const char *dir)
 
 int main ()
 {
-	my_ls(".");
+	my_l(".");
 }

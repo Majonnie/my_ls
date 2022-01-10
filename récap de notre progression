@@ -1,4 +1,4 @@
--l --> en cours (joh)
+-l --> en cours reste: display owner(nope), group(nope). (+ le nom du groupe va à la ligne mais il ne faut pas.)
 -R
 -r
 -d
@@ -14,12 +14,12 @@ fonctions autorisées:
     readdir
     closedir
     stat -> infos d'un fichier.
-    lstat -> surement la même chose que stat.
+    lstat -> je crois devoir l'utiliser pour compter les hardlinks
     getpwuid -> avoir le user du owner d'un fichier.
     getgrgid -^
     getcwd
     ctime / ctime_r / strftime / localtime / localtime_r -> avoir heure et date.
-    readlink
+    readlink  -> avoir le nombre de softlinks 
     getopt
     malloc
     free
