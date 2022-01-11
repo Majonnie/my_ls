@@ -4,7 +4,7 @@
 #include <string.h>
 #include "onesttropbg.h"
 
-void my_d(char *dir)
+void my_A(char *dir)
 {
 	//int op_l = 0;
     struct dirent *d;  // on créé un objet dirent pour avoir accés à ses fonctions
@@ -13,23 +13,24 @@ void my_d(char *dir)
 	DIR *dh = opendir(dir);
     while ((d = readdir(dh)) != NULL)
     {
-        int p = my_strlen(d->d_name);
+        if(my_strlen (d->d_name) == 1 && d->d_name[0] == '.')
+        continue;
 
-        if(d->d_name[0] != '.')
-            continue;
-        else if(p > 1 )
-            continue;
+        else if(d->d_name[0] == '.' && d->d_name[1] == '.')
+        continue;
+
         else
         {
             my_putstr(d->d_name);
             my_putchar(' ');
             my_putchar(' ');
         }
+
     }
     my_putchar('\n');
 }
 
 int main ()
 {
-	my_d(".");
+	my_A(".");
 }

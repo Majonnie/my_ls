@@ -34,6 +34,7 @@ void my_ls(const char *dir,int op_a,int op_1)
             continue;
         my_putstr( d->d_name);
 		my_putchar(' ');
+		my_putchar(' ');
 		if(op_1) 
 			my_putchar('\n');
     }

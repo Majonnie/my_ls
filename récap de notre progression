@@ -2,14 +2,15 @@
 -a  --> fait :) (à trier par ordre alphabétique)
 -d  --> fait :)
 -1  -->  fait :) (à trier par ordre alphabétique)
-
 $> ./my_ls -l /dev/ /usr/sbin
+
+
+-A  --> (comme -a mais n'affiche pas . et .. (si -a et -A sont présents, -a prend le dessus)) EN COURS
 
 
 -R  --> liste récursivement les dossiers rencontrés
 -r  --> inverse ordre alphabétique
 -t  --> (permet d'afficher les fichiers du plus récemment modifié au moins récemment modifié)
--A  --> (comme -a mais n'affiche pas . et .. (si -a et -A sont présents, -a prend le dessus))
 -L  --> (when  showing  file  information  for  a  symbolic  link,
     show  information for the file the link references rather than for the link itself)
 
