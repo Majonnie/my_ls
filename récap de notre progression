@@ -1,29 +1,17 @@
-<<<<<<< HEAD
-
 -l  --> fait :) (à trier par ordre alphabétique)
 -a  --> fait :) (à trier par ordre alphabétique)
-=======
--l --> en cours (joh)
--R --> liste récursivement les dossiers rencontrés
--r --> (inverse l'ordre du tri) --> à faire une fois tout fait, pour vérifier que ça fonctionne sur tout ?
--d --> (list directory entries instead of contents, and do not dereference symbolic links)
--t --> (permet d'afficher les fichiers du plus récemment modifié au moins récemment modifié)
--a --> fait
--A --> (comme -a mais n'affiche pas . et .. (si -a et -A sont présents, -a prend le dessus))
--L --> (when  showing  file  information  for  a  symbolic  link,
-    show  information for the file the link references rather than for the link itself)
--1 --> force à n'avoir qu'une entrée par ligne
+-d  --> fait :)
+-1  -->  fait :) (à trier par ordre alphabétique)
 
->>>>>>> 390202b8b0a2cbbe836691806d0c60475a5bc1ee
 $> ./my_ls -l /dev/ /usr/sbin
 
 
--R  --> ouvre les dossiers dans les dossiers, etc
+-R  --> liste récursivement les dossiers rencontrés
 -r  --> inverse ordre alphabétique
--d  --> affiche juste "."
--t  --> affiche dans l'ordre de modif
--A  --> affiche tous les fichiers sauf . et ..
--L  --> euh ouep lol
+-t  --> (permet d'afficher les fichiers du plus récemment modifié au moins récemment modifié)
+-A  --> (comme -a mais n'affiche pas . et .. (si -a et -A sont présents, -a prend le dessus))
+-L  --> (when  showing  file  information  for  a  symbolic  link,
+    show  information for the file the link references rather than for the link itself)
 
 
 fonctions autorisées: 
@@ -36,13 +24,8 @@ fonctions autorisées:
     getgrgid -^
     getcwd
     ctime / ctime_r / strftime / localtime / localtime_r -> avoir heure et date.
-<<<<<<< HEAD
-    readlink  -> avoir le nombre de softlinks 
-    getopt
-=======
-    readlink
+    readlink -> lire les liens dans les fichiers
     getopt -> en cours (Majo)
->>>>>>> 390202b8b0a2cbbe836691806d0c60475a5bc1ee
     malloc
     free
     errno / strerror -> gerer les erreurs.
