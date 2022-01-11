@@ -1,37 +1,30 @@
-#include <stdlib.h>
-#include <string.h>
-#include "onesttropbg.h"
-  
-// Defining comparator function as per the requirement
-static int myCompare(const void* a, const void* b)
+#include <stdio.h>
+#include <dirent.h>
+
+int main(void)
 {
-  
-    // setting up rules for comparison
-    return my_strcmp(*(const char**)a, *(const char**)b);
-}
-  
-// Function to sort the array
-void sort(const char* arr[], int n)
-{
-    // calling qsort function to sort the array
-    // with the help of Comparator
-    qsort(arr, n, sizeof(const char*), myCompare);
-}
-  
-int main()
-{
-  
-    // Get the array of names to be sorted
-    const char* arr[]
-        = { "geeksforgeeks", "geeksquiz", "clanguage" };
-  
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int i;
-    sort(arr, n);
-    // Print the sorted names
-    for (i = 0; i < n; i++)
-        {my_putstr("arr[i]");
-        my_putchar('\n');}
-  
-    return 0;
+	char *NameArr[20]; // the array which will store the filenames
+	DIR *dir;
+	int i=0,k;
+	struct dirent *ent;
+	dir = opendir (dir);
+	if (dir != NULL) 
+	{
+	/* print all the files and directories within directory */
+	while ((ent = readdir (dir)) != NULL) 
+		{
+		NameArr[i]=ent->d_name;
+		/* save filenames in the array */
+		i++;
+		}
+	closedir (dir);
+	} 
+	else 
+	{
+	/* could not open directory */
+	perror ("");
+	}
+	for (k=0;(k<(i+1)) && (k<20);k++) printf("%s\n",NameArr[k]);
+	//print the filenames on the screen
+	return 0;
 }

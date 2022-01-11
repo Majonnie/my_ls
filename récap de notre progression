@@ -1,12 +1,15 @@
--l --> en cours reste: display owner(nope), group(nope). (+ le nom du groupe va à la ligne mais il ne faut pas.)
--R
--r
--d
--t
--a --> fait 
--A
--L
+
+-l  --> fait :) (à trier par ordre alphabétique)
+-a  --> fait :) (à trier par ordre alphabétique)
 $> ./my_ls -l /dev/ /usr/sbin
+
+
+-R  --> ouvre les dossiers dans les dossiers, etc
+-r  --> inverse ordre alphabétique
+-d  --> affiche juste "."
+-t  --> affiche dans l'ordre de modif
+-A  --> affiche tous les fichiers sauf . et ..
+-L  --> euh ouep lol
 
 
 fonctions autorisées: 

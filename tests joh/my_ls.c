@@ -1,8 +1,8 @@
 #include <dirent.h> //dirent permettra de parcourir les fichiers
-#include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
+#include "onesttropbg.h"
 
 
 void my_ls(const char *dir,int op_a,int op_1)
@@ -13,18 +13,18 @@ void my_ls(const char *dir,int op_a,int op_1)
 	DIR *dh = opendir(dir);
 
     //si on ne peut pas acceder au dossier, grace à la 3e librairie, on va gerer les erreurs.
-    if (!dh)
-	{
-		if (errno = ENOENT) // "ENOENT Directory does not exist, or name is an empty string." Explication du man opendir.
-		{
-			perror("Directory doesn't exist"); //UTILISER STRERROR
-		}
-		else // pour les autres erreurs, on dit qu'on ne peut pas lire le dossier demandé.
-		{
-			perror("Unable to read directory");//UTILISER STRERROR
-		}
-		exit(EXIT_FAILURE);        
-	}
+    // if (!dh)
+	// {
+	// 	if (errno = ENOENT) // "ENOENT Directory does not exist, or name is an empty string." Explication du man opendir.
+	// 	{
+	// 		perror("Directory doesn't exist"); //UTILISER STRERROR
+	// 	}
+	// 	else // pour les autres erreurs, on dit qu'on ne peut pas lire le dossier demandé.
+	// 	{
+	// 		perror("Unable to read directory");//UTILISER STRERROR
+	// 	}
+	// 	exit(EXIT_FAILURE);
+	// }
 
     //Il faut maintenant afficher les fichiers dans le dossier.
     while ((d = readdir(dh)) != NULL)
@@ -32,9 +32,13 @@ void my_ls(const char *dir,int op_a,int op_1)
         //si le programme rencontre des fichiers cachés.
         if (!op_a && d->d_name[0] == '.')
             continue;
-        printf("%s", d->d_name);
-		if(op_1) printf("\n");
+        my_putstr( d->d_name);
+		my_putchar(' ');
+		if(op_1) 
+			my_putchar('\n');
     }
+	if(!op_1)
+		my_putchar('\n');
 }
 
 int main(int argc, const char *argv[])
@@ -55,7 +59,6 @@ int main(int argc, const char *argv[])
 				if(*p == 'a') op_a = 1;
 				else if(*p == '1') op_1 = 1;
 				else{
-					perror("Option not available");
 					exit(EXIT_FAILURE);
 				}
 				p++;
