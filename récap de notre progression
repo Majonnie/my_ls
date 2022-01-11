@@ -1,7 +1,7 @@
 -l --> en cours (joh)
 -R --> liste récursivement les dossiers rencontrés
 -r --> (inverse l'ordre du tri) --> à faire une fois tout fait, pour vérifier que ça fonctionne sur tout ?
--d --> (list directory entries instead of contents, and do not dereference symbolic links)q
+-d --> (list directory entries instead of contents, and do not dereference symbolic links)
 -t --> (permet d'afficher les fichiers du plus récemment modifié au moins récemment modifié)
 -a --> fait
 -A --> (comme -a mais n'affiche pas . et .. (si -a et -A sont présents, -a prend le dessus))

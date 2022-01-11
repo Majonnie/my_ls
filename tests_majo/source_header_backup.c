@@ -66,7 +66,6 @@ int my_debugnbr(int n)
     return (n);
 }
 
-int unique_dossier = 0;
 int check_arg(int argc, char *argv[])
 {
     int flags, opt;
@@ -75,6 +74,8 @@ int check_arg(int argc, char *argv[])
     nsecs = 0;
     tfnd = 0;
     flags = 0;
+
+    int unique_dossier = 0;
 
     my_debugstr("argc = ");
     my_debugnbr(argc);
@@ -162,10 +163,7 @@ int check_arg(int argc, char *argv[])
 
 
     // Garder en mémoire la valeur de optind puisque la suite des arguments contient la liste des fichier/repertoire passé en argument à ls
-    my_debugnbr(optind);
-    my_debugnbr(argc);
-
-    if (optind < argc) //avant <=, corrigé en <
+    if (optind <= argc)
     {
         for (int i = optind; i < argc; i++)
         {
@@ -178,13 +176,14 @@ int check_arg(int argc, char *argv[])
     else
     {
         //On devra checker dans le main si unique_dossier est défini : si oui, on affiche le contenu du dossier .
-        //my_debugstr("Pas de nom de fichier précisé, sera remplacé par .");
+        my_putstr("Pas de nom de fichier précisé, sera remplacé par .");
         unique_dossier = 1;
     }
 
     //printf("name argument = %s\n", argv[optind]);
 
     /* Other code omitted */
+    my_debugstr("Ui");
     if (unique_dossier > 0)
     {
         my_debugstr("Aucun fichier n'a été passé en paramètre (devra être remplacé par .).");
@@ -255,7 +254,7 @@ int main(int argc, char **argv)
     my_debugstr("Messages de debug : affichés.");
     my_debugnbr(69);
 
-    check_arg(argc, argv);
+    //check_arg(argc, argv);
     base_ls(argc, argv);
 }
 
