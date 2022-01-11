@@ -69,6 +69,8 @@ int my_debugnbr(int n)
 int unique_dossier = 0;
 int check_arg(int argc, char *argv[])
 {
+    my_debugstr("test");
+    my_putstr("Salut\n");
     int flags, opt;
     int nsecs, tfnd;
 
@@ -79,83 +81,77 @@ int check_arg(int argc, char *argv[])
     my_debugstr("argc = ");
     my_debugnbr(argc);
 
-    if (argc > 1)
+    if (argc > 1 && argv[1][0] == '-')
     {
-
-        if (argv[1][0] == '-')
+        while ((opt = getopt(argc, argv, "lRrdtaAL1")) != -1)
         {
-            while ((opt = getopt(argc, argv, "lRrdtaAL1")) != -1)
+            switch (opt)
             {
-                switch (opt)
-                {
-                    case 'l':
-                        my_putstr("Option : ");
-                        my_putchar(opt);
-                        my_putchar('\n');
-                        break;
-                    case 'R':
-                        my_putstr("Option : ");
-                        my_putchar(opt);
-                        my_putchar('\n');
-                        break;
-                    case 'r':
-                        my_putstr("Option : ");
-                        my_putchar(opt);
-                        my_putchar('\n');
-                        break;
-                    case 'd':
-                        my_putstr("Option : ");
-                        my_putchar(opt);
-                        my_putchar('\n');
-                        break;
-                    case 't':
-                        my_putstr("Option : ");
-                        my_putchar(opt);
-                        my_putchar('\n');
-                        break;
-                    case 'a':
-                        my_putstr("Option : ");
-                        my_putchar(opt);
-                        my_putchar('\n');
-                        break;
-                    case 'A':
-                        my_putstr("Option : ");
-                        my_putchar(opt);
-                        my_putchar('\n');
-                        break;
-                    case 'L':
-                        my_putstr("Option : ");
-                        my_putchar(opt);
-                        my_putchar('\n');
-                        break;
-                    case '1':
-                        my_putstr("Option : ");
-                        my_putchar(opt);
-                        my_putchar('\n');
-                        break;
+                case 'l':
+                    my_putstr("Option : ");
+                    my_putchar(opt);
+                    my_putchar('\n');
+                    break;
+                case 'R':
+                    my_putstr("Option : ");
+                    my_putchar(opt);
+                    my_putchar('\n');
+                    break;
+                case 'r':
+                    my_putstr("Option : ");
+                    my_putchar(opt);
+                    my_putchar('\n');
+                    break;
+                case 'd':
+                    my_putstr("Option : ");
+                    my_putchar(opt);
+                    my_putchar('\n');
+                    break;
+                case 't':
+                    my_putstr("Option : ");
+                    my_putchar(opt);
+                    my_putchar('\n');
+                    break;
+                case 'a':
+                    my_putstr("Option : ");
+                    my_putchar(opt);
+                    my_putchar('\n');
+                    break;
+                case 'A':
+                    my_putstr("Option : ");
+                    my_putchar(opt);
+                    my_putchar('\n');
+                    break;
+                case 'L':
+                    my_putstr("Option : ");
+                    my_putchar(opt);
+                    my_putchar('\n');
+                    break;
+                case '1':
+                    my_putstr("Option : ");
+                    my_putchar(opt);
+                    my_putchar('\n');
+                    break;
 
-                    default: /* ? */
-                        //fprintf(stderr, "Usage: %s -lRd\n", argv[0]);
-                        my_putstr(argv[0]);
-                        my_putstr(" - Erreur !");
-                        my_putchar('\n');
-                        exit(EXIT_FAILURE);
-                }
+                default: /* ? */
+                    //fprintf(stderr, "Usage: %s -lRd\n", argv[0]);
+                    my_putstr(argv[0]);
+                    my_putstr(" - Erreur !");
+                    my_putchar('\n');
+                    exit(EXIT_FAILURE);
             }
         }
+    }
 
-        else
-        {
-            my_putstr("Pas d'options");
-            my_putchar('\n');
-            optind = 1;
-        }
-
+    else {
+        my_putstr("Pas d'options");
+        my_putchar('\n');
+        optind = 1;
     }
 
 
     //printf("optind=%d, argc =%d\n", optind, argc);
-    else
+    if (argc == 1)
     {
         unique_dossier = 1;
     }
@@ -255,7 +251,7 @@ int main(int argc, char **argv)
     my_debugstr("Messages de debug : affichés.");
     my_debugnbr(69);
 
-    check_arg(argc, argv);
+    //check_arg(argc, argv);
     base_ls(argc, argv);
 }
 
