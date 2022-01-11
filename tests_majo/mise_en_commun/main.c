@@ -2,7 +2,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
-#include "onesttropbg.h"
+#include "fonctions.h"
 
 
 void my_ls(const char *dir,int op_a,int op_1)
@@ -30,17 +30,38 @@ void my_ls(const char *dir,int op_a,int op_1)
     while ((d = readdir(dh)) != NULL)
     {
 
-        //si le programme rencontre des fichiers cachés.
-        if (a_isset == 0 && !op_a && d->d_name[0] == '.')
-            continue;
-        my_putstr( d->d_name);
-		my_putchar(' ');
-		my_putchar(' ');
-		if(op_1) 
-			my_putchar('\n');
+        //Variables temporaires en attendant check_arg !!!
+        int A_isset = 1;
+        int a_isset = 0;
+
+        //1) Si le programme rencontre des fichiers cachés. (options -a et -A)
+        //Option -A
+        if (A_isset == 1 && a_isset == 0)
+        {
+            //Partie à copier
+            if(my_strlen (d->d_name) == 1 && d->d_name[0] == '.')
+                continue;
+            else if(d->d_name[0] == '.' && d->d_name[1] == '.')
+                continue;
+
+            else
+            {
+                my_putstr(d->d_name);
+                my_putchar(' ');
+                my_putchar(' ');
+            }
+        }
+        //Option -a (prioritaire sur -A)
+        else {
+            if (a_isset == 0 && !op_a && d->d_name[0] == '.')
+                continue;
+            my_putstr(d->d_name);
+            my_putchar(' ');
+            my_putchar(' ');
+            if (op_1)
+                my_putchar('\n');
+        }
     }
-	if(!op_1)
-		my_putchar('\n');
 }
 
 int main(int argc, const char *argv[])
