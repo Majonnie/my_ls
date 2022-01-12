@@ -29,8 +29,9 @@ void my_ls(const char *dir,int op_a,int op_1)
     //Il faut maintenant afficher les fichiers dans le dossier.
     while ((d = readdir(dh)) != NULL)
     {
+
         //si le programme rencontre des fichiers cachés.
-        if (!op_a && d->d_name[0] == '.')
+        if (a_isset == 0 && !op_a && d->d_name[0] == '.')
             continue;
         my_putstr( d->d_name);
 		my_putchar(' ');
@@ -44,7 +45,8 @@ void my_ls(const char *dir,int op_a,int op_1)
 
 int main(int argc, const char *argv[])
 {
-    if (argc == 1)
+    //a gérer avec check_arg et unique_dossier
+    if (argc == 1) //plutôt if (unique_dossier = 1)...
 	{
 		my_ls(".",0,0);
 	}
