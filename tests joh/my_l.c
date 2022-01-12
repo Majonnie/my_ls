@@ -49,16 +49,15 @@ void my_l(char *dir)
 
 		if (S_ISDIR(fileStat.st_mode)) {
 			my_putchar('d');
-		else if(S_ISDIR(buf.st_mode))
-        	my_putchar("d");
-    	else if(S_ISCHR(buf.st_mode))
-        	my_putchar("c");
-		else if(S_ISBLK(buf.st_mode))
-			my_putchar("b");
-		else if(S_ISFIFO(buf.st_mode))
-			my_putchar("f");
-		else if(S_ISSOCK(buf.st_mode))
-			my_putchar("s");
+		}
+    	else if(S_ISCHR(fileStat.st_mode))
+        	my_putchar('c');
+		else if(S_ISBLK(fileStat.st_mode))
+			my_putchar('b');
+		else if(S_ISFIFO(fileStat.st_mode))
+			my_putchar('f');
+		else if(S_ISSOCK(fileStat.st_mode))
+			my_putchar('s');
 		else{
 			my_putchar('-');
 		}
