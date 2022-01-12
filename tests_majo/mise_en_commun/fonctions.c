@@ -68,6 +68,7 @@ int my_debugnbr(int n)
 
 //Variables globales
 int aucun_argument = 0;
+int index_argument;
 //Options : lRrdtaAL1
 int l_isset = 0;
 int R_isset = 0;
@@ -81,8 +82,6 @@ int one_isset = 0;
 
 int check_arg(int argc, char *argv[])
 {
-    my_debugstr("test");
-    my_putstr("Salut\n");
     int flags, opt;
     int nsecs, tfnd;
 
@@ -173,6 +172,8 @@ int check_arg(int argc, char *argv[])
     my_debugnbr(optind);
     my_debugnbr(argc);
 
+    index_argument = optind;
+    //Lecture des arguments (autres que des options)
     if (optind < argc) //avant <=, corrigé en <
     {
         for (int i = optind; i < argc; i++)
@@ -185,7 +186,7 @@ int check_arg(int argc, char *argv[])
     /* Gérer les dossiers / fichiers passés en paramètres et le remplacement pas un . s'il n'y en pas */
     else
     {
-        //On devra checker dans le main si unique_dossier est défini : si oui, on affiche le contenu du dossier .
+        //On devra checker dans le main si aucun_argument == 1 : si oui, on affiche le contenu du dossier .
         //my_debugstr("Pas de nom de fichier précisé, sera remplacé par .");
         aucun_argument = 1;
     }

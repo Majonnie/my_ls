@@ -20,6 +20,7 @@ int my_debugnbr(int n);
 
 //Variables globales
 int aucun_argument;
+int index_argument;
 //Options : lRrdtaAL1
 int l_isset;
 int R_isset;

@@ -7,14 +7,6 @@
 
 void my_ls(const char *dir,int op_a,int op_A,int op_1) //Ajouter au fur et à mesure un paramètre par option ?? --> booléens / int
 {
-    my_putchar('\n');
-    my_putnbr(aucun_argument);
-    my_putnbr(A_isset);
-    my_putnbr(a_isset);
-    my_putchar('a');
-    my_putchar('\n');
-    my_putchar('\n');
-
     struct dirent *d;  // on créé un objet dirent pour avoir accés à ses fonctions
     /*la fonction DIR permet de naviguer dans les fichiers
     la ligne suivante permet d'ouvrir le fichier demandé*/
@@ -41,8 +33,8 @@ void my_ls(const char *dir,int op_a,int op_A,int op_1) //Ajouter au fur et à me
         //Variables temporaires en attendant check_arg !!!
         //int A_isset = 1;
         //int a_isset = 0;
-        op_A = 1;
-        op_a = 0;
+        //op_A = 1;
+        //op_a = 0;
 
         //1) Si le programme rencontre des fichiers cachés. (options -a et -A)
         //Option -A
@@ -80,10 +72,13 @@ int main(int argc, char *argv[])
     if (aucun_argument == 1)
     {
         my_ls(".",a_isset,A_isset,one_isset);
+        my_putchar('\n');
     }
     else
     {
-        my_putstr("test");
+        my_ls(argv[index_argument],a_isset,A_isset,one_isset);
+        //Seg fault ici
+        my_putchar('\n');
     }
 }
 
