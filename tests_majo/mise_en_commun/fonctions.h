@@ -18,6 +18,19 @@ const char *my_debugstr(const char *str);
 
 int my_debugnbr(int n);
 
+//Variables globales
+int aucun_argument;
+//Options : lRrdtaAL1
+int l_isset;
+int R_isset;
+int r_isset;
+int d_isset;
+int t_isset;
+int a_isset;
+int A_isset;
+int L_isset;
+int one_isset;
+
 int check_arg(int argc, char *argv[]);
 
 int base_ls(int argc, char *argv[]); //Ça dégage

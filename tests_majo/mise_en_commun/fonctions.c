@@ -66,7 +66,19 @@ int my_debugnbr(int n)
     return (n);
 }
 
-int unique_dossier = 0;
+//Variables globales
+int aucun_argument = 0;
+//Options : lRrdtaAL1
+int l_isset = 0;
+int R_isset = 0;
+int r_isset = 0;
+int d_isset = 0;
+int t_isset = 0;
+int a_isset = 0;
+int A_isset = 0;
+int L_isset = 0;
+int one_isset = 0;
+
 int check_arg(int argc, char *argv[])
 {
     my_debugstr("test");
@@ -88,49 +100,49 @@ int check_arg(int argc, char *argv[])
             switch (opt)
             {
                 case 'l':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
+                    l_isset = 1;
+                    my_debugstr("Option : ");
+                    my_debugchar(opt);
                     break;
                 case 'R':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
+                    R_isset = 1;
+                    my_debugstr("Option : ");
+                    my_debugchar(opt);
                     break;
                 case 'r':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
+                    r_isset = 1;
+                    my_debugstr("Option : ");
+                    my_debugchar(opt);
                     break;
                 case 'd':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
+                    d_isset = 1;
+                    my_debugstr("Option : ");
+                    my_debugchar(opt);
                     break;
                 case 't':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
+                    t_isset = 1;
+                    my_debugstr("Option : ");
+                    my_debugchar(opt);
                     break;
                 case 'a':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
+                    a_isset = 1;
+                    my_debugstr("Option : ");
+                    my_debugchar(opt);
                     break;
                 case 'A':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
+                    A_isset = 1;
+                    my_debugstr("Option : ");
+                    my_debugchar(opt);
                     break;
                 case 'L':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
+                    L_isset = 1;
+                    my_debugstr("Option : ");
+                    my_debugchar(opt);
                     break;
                 case '1':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
+                    one_isset = 1;
+                    my_debugstr("Option : ");
+                    my_debugchar(opt);
                     break;
 
                 default: /* ? */
@@ -153,7 +165,7 @@ int check_arg(int argc, char *argv[])
     //printf("optind=%d, argc =%d\n", optind, argc);
     if (argc == 1)
     {
-        unique_dossier = 1;
+        aucun_argument = 1;
     }
 
 
@@ -175,13 +187,13 @@ int check_arg(int argc, char *argv[])
     {
         //On devra checker dans le main si unique_dossier est défini : si oui, on affiche le contenu du dossier .
         //my_debugstr("Pas de nom de fichier précisé, sera remplacé par .");
-        unique_dossier = 1;
+        aucun_argument = 1;
     }
 
     //printf("name argument = %s\n", argv[optind]);
 
     /* Other code omitted */
-    if (unique_dossier > 0)
+    if (aucun_argument > 0)
     {
         my_debugstr("Aucun fichier n'a été passé en paramètre (devra être remplacé par .).");
     }
@@ -310,8 +322,10 @@ int main(int argc, char **argv)
     my_debugstr("Messages de debug : affichés.");
     my_debugnbr(69);
 
-    //check_arg(argc, argv);
+    check_arg(argc, argv);
     base_ls(argc, argv);
+    my_debugstr("aucun_argument =");
+    my_debugnbr(aucun_argument);
 }
 
 #endif

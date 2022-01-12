@@ -6,7 +6,7 @@ NAME = my_ls
 
 # Ajouter -DTEST pour les tests du fichiers source_header.c ; et -DDEBUG pour les messages de debug.
 $(NAME): $(OBJ)
-	gcc -o $(NAME) -DDEBUG $(OBJ)
+	gcc -o $(NAME) $(OBJ) -DDEBUG
 
 all:	$(NAME)
 

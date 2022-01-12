@@ -5,8 +5,16 @@
 #include "fonctions.h"
 
 
-void my_ls(const char *dir,int op_a,int op_1)
+void my_ls(const char *dir,int op_a,int op_A,int op_1) //Ajouter au fur et à mesure un paramètre par option ?? --> booléens / int
 {
+    my_putchar('\n');
+    my_putnbr(aucun_argument);
+    my_putnbr(A_isset);
+    my_putnbr(a_isset);
+    my_putchar('a');
+    my_putchar('\n');
+    my_putchar('\n');
+
     struct dirent *d;  // on créé un objet dirent pour avoir accés à ses fonctions
     /*la fonction DIR permet de naviguer dans les fichiers
     la ligne suivante permet d'ouvrir le fichier demandé*/
@@ -31,12 +39,14 @@ void my_ls(const char *dir,int op_a,int op_1)
     {
 
         //Variables temporaires en attendant check_arg !!!
-        int A_isset = 1;
-        int a_isset = 0;
+        //int A_isset = 1;
+        //int a_isset = 0;
+        op_A = 1;
+        op_a = 0;
 
         //1) Si le programme rencontre des fichiers cachés. (options -a et -A)
         //Option -A
-        if (A_isset == 1 && a_isset == 0)
+        if (op_A == 1 && op_a == 0)
         {
             //Partie à copier
             if(my_strlen (d->d_name) == 1 && d->d_name[0] == '.')
@@ -53,7 +63,7 @@ void my_ls(const char *dir,int op_a,int op_1)
         }
         //Option -a (prioritaire sur -A)
         else {
-            if (a_isset == 0 && !op_a && d->d_name[0] == '.')
+            if (a_isset == 0 && d->d_name[0] == '.')
                 continue;
             my_putstr(d->d_name);
             my_putchar(' ');
@@ -64,30 +74,17 @@ void my_ls(const char *dir,int op_a,int op_1)
     }
 }
 
-int main(int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
-    //a gérer avec check_arg et unique_dossier
-    if (argc == 1) //plutôt if (unique_dossier = 1)...
-	{
-		my_ls(".",0,0);
-	}
-
-    else if (argc == 2)
-	{
-		if (argv[1][0] == '-')
-		{
-			
-			int op_a = 0, op_1 = 0;
-			char *p = (char*)(argv[1] + 1);
-			while(*p){
-				if(*p == 'a') op_a = 1;
-				else if(*p == '1') op_1 = 1;
-				else{
-					exit(EXIT_FAILURE);
-				}
-				p++;
-			}
-			my_ls(".",op_a,op_1);
-		}
-	}
+    check_arg(argc,argv);
+    if (aucun_argument == 1)
+    {
+        my_ls(".",a_isset,A_isset,one_isset);
+    }
+    else
+    {
+        my_putstr("test");
+    }
 }
+
+
