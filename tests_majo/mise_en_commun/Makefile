@@ -2,11 +2,12 @@ SRC = ./main.c \
 	./fonctions.c
 OBJ = $(SRC:.c=.o)
 CFLAGS += -Wall -Werror -Wextra
+#define DEBUG
 NAME = my_ls
 
-# Ajouter -DTEST pour les tests du fichiers source_header.c ; et -DDEBUG pour les messages de debug.
+# Ajouter -DTEST pour les tests du fichiers fonctions.c ; et -DDEBUG pour les messages de debug.
 $(NAME): $(OBJ)
-	gcc -o $(NAME) $(OBJ) -DDEBUG
+	gcc $(CFLAGS) -o $(NAME) -DDEBUG $(OBJ)
 
 all:	$(NAME)
 

@@ -101,6 +101,7 @@ int check_arg(int argc, char *argv[])
                 case 'l':
                     l_isset = 1;
                     my_debugstr("Option : ");
+                    my_putstr("test\n");
                     my_debugchar(opt);
                     break;
                 case 'R':

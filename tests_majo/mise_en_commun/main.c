@@ -12,6 +12,13 @@ void my_ls(const char *dir,int op_a,int op_A,int op_1) //Ajouter au fur et à me
     la ligne suivante permet d'ouvrir le fichier demandé*/
 	DIR *dh = opendir(dir);
 
+    if (dh == NULL) /* Si le dossier n'a pas pu être ouvert */
+    {
+        //Préciser l'erreur !!
+        my_putstr("Problème d'ouverture.\n");
+        exit(1);
+    }
+
     //si on ne peut pas acceder au dossier, grace à la 3e librairie, on va gerer les erreurs.
     // if (!dh)
 	// {
