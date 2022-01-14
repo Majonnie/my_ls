@@ -94,7 +94,7 @@ int check_arg(int argc, char *argv[])
 
     if (argc > 1 && argv[1][0] == '-')
     {
-        while ((opt = getopt(argc, argv, "lRrdtaAL1")) != -1)
+        while ((opt = getopt(argc, argv, "lRrdtaAL")) != -1)
         {
             switch (opt)
             {
@@ -136,11 +136,6 @@ int check_arg(int argc, char *argv[])
                     break;
                 case 'L':
                     L_isset = 1;
-                    my_debugstr("Option : ");
-                    my_debugchar(opt);
-                    break;
-                case '1':
-                    one_isset = 1;
                     my_debugstr("Option : ");
                     my_debugchar(opt);
                     break;

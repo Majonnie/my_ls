@@ -5,7 +5,7 @@
 #include "fonctions.h"
 
 
-void my_ls(const char *dir,int op_a,int op_A,int op_1) //Ajouter au fur et à mesure un paramètre par option ?? --> booléens / int
+void my_ls(const char *dir,int op_a,int op_A,int op_d, int argc, char *argv[]) //Ajouter au fur et à mesure un paramètre par option ?? --> booléens / int
 {
     struct dirent *d;  // on créé un objet dirent pour avoir accés à ses fonctions
     /*la fonction DIR permet de naviguer dans les fichiers
@@ -56,20 +56,31 @@ void my_ls(const char *dir,int op_a,int op_A,int op_1) //Ajouter au fur et à me
             else
             {
                 my_putstr(d->d_name);
-                my_putchar(' ');
-                my_putchar(' ');
+                //my_putchar(' ');
+                //my_putchar(' ');
+                my_putchar('\n');
             }
         }
         //Option -a (prioritaire sur -A)
         else {
-            if (a_isset == 0 && d->d_name[0] == '.')
+            if (op_a == 0 && d->d_name[0] == '.')
                 continue;
             my_putstr(d->d_name);
-            my_putchar(' ');
-            my_putchar(' ');
-            if (op_1)
-                my_putchar('\n');
+            //my_putchar(' ');
+            //my_putchar(' ');
+            my_putchar('\n');
         }
+
+        //Option -d
+        if (op_d == 1)
+        {
+            for (int i = index_argument; i < argc; ++i) {
+                my_putstr(argv[i]);
+                my_putchar('\n');
+            }
+
+        }
+
     }
 }
 
@@ -78,16 +89,26 @@ int main(int argc, char *argv[])
     check_arg(argc,argv);
     if (aucun_argument == 1)
     {
-        my_ls(".",a_isset,A_isset,one_isset);
+        my_ls(".",a_isset,A_isset,d_isset,argc,argv);
         my_putchar('\n');
     }
     else
     {
-        for (int i = index_argument; i < argc; ++i) {
-            my_putstr(argv[i]);
-            my_putstr(" : \n");
-            my_ls(argv[i],a_isset,A_isset,one_isset);
-            my_putchar('\n');
+        //my_putnbr(index_argument);
+        //my_putnbr(argc);
+        //my_putnbr(argc-index_argument);
+        if (argc-index_argument == 1)
+        {
+            my_ls(argv[index_argument],a_isset,A_isset,d_isset,argc,argv);
+        }
+        else
+        {
+            for (int i = index_argument; i < argc; ++i) {
+                my_putstr(argv[i]);
+                my_putstr(" : \n");
+                my_ls(argv[i], a_isset, A_isset, d_isset, argc, argv);
+                my_putchar('\n');
+            }
         }
 
     }

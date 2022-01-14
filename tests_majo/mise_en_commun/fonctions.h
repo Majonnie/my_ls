@@ -30,7 +30,6 @@ int t_isset;
 int a_isset;
 int A_isset;
 int L_isset;
-int one_isset;
 
 int check_arg(int argc, char *argv[]);
 
