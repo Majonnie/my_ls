@@ -62,6 +62,37 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int argc, char *argv[]) /
             }
         }
         //Option -a (prioritaire sur -A)
+        else if (op_a == 1)
+        {
+            my_putstr(d->d_name);
+            my_putchar('\n');
+        }
+
+
+        //Autres options
+
+        //Option -d
+        if (op_d == 1)
+        {
+            if (argc-index_argument == 1)
+            {
+                my_putstr(argv[index_argument]);
+                my_putchar('\n');
+            }
+            else if (argc-index_argument == 0) {
+                my_putchar('.');
+                my_putchar('\n');
+            }
+            else {
+                for (int i = index_argument; i < argc; ++i) {
+                    my_putstr(argv[i]);
+                    my_putchar('\n');
+                }
+            }
+            exit(0);
+        }
+
+        //Sans option ??
         else {
             if (op_a == 0 && d->d_name[0] == '.')
                 continue;
@@ -69,16 +100,6 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int argc, char *argv[]) /
             //my_putchar(' ');
             //my_putchar(' ');
             my_putchar('\n');
-        }
-
-        //Option -d
-        if (op_d == 1)
-        {
-            for (int i = index_argument; i < argc; ++i) {
-                my_putstr(argv[i]);
-                my_putchar('\n');
-            }
-
         }
 
     }
@@ -97,7 +118,7 @@ int main(int argc, char *argv[])
         //my_putnbr(index_argument);
         //my_putnbr(argc);
         //my_putnbr(argc-index_argument);
-        if (argc-index_argument == 1)
+        if (argc-index_argument == 1 || d_isset == 1)
         {
             my_ls(argv[index_argument],a_isset,A_isset,d_isset,argc,argv);
         }
