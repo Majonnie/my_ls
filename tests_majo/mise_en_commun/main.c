@@ -83,9 +83,13 @@ int main(int argc, char *argv[])
     }
     else
     {
-        my_ls(argv[index_argument],a_isset,A_isset,one_isset);
-        //Seg fault ici
-        my_putchar('\n');
+        for (int i = index_argument; i < argc; ++i) {
+            my_putstr(argv[i]);
+            my_putstr(" : \n");
+            my_ls(argv[i],a_isset,A_isset,one_isset);
+            my_putchar('\n');
+        }
+
     }
 }
 

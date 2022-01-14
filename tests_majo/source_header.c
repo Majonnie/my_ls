@@ -31,12 +31,11 @@ void my_putnbr(int n)
         n = -n;
         my_putchar('-');
     }
-    if ( n >= 10 )
+    if (n >= 10)
     {
-        my_putnbr(n/10);
-
+        my_putnbr(n / 10);
     }
-    my_putchar(n%10 +'0');
+    my_putchar(n % 10 + '0');
 }
 
 char my_debugchar(char c)
@@ -87,75 +86,74 @@ int check_arg(int argc, char *argv[])
         {
             switch (opt)
             {
-                case 'l':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
-                    break;
-                case 'R':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
-                    break;
-                case 'r':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
-                    break;
-                case 'd':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
-                    break;
-                case 't':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
-                    break;
-                case 'a':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
-                    break;
-                case 'A':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
-                    break;
-                case 'L':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
-                    break;
-                case '1':
-                    my_putstr("Option : ");
-                    my_putchar(opt);
-                    my_putchar('\n');
-                    break;
+            case 'l':
+                my_putstr("Option : ");
+                my_putchar(opt);
+                my_putchar('\n');
+                break;
+            case 'R':
+                my_putstr("Option : ");
+                my_putchar(opt);
+                my_putchar('\n');
+                break;
+            case 'r':
+                my_putstr("Option : ");
+                my_putchar(opt);
+                my_putchar('\n');
+                break;
+            case 'd':
+                my_putstr("Option : ");
+                my_putchar(opt);
+                my_putchar('\n');
+                break;
+            case 't':
+                my_putstr("Option : ");
+                my_putchar(opt);
+                my_putchar('\n');
+                break;
+            case 'a':
+                my_putstr("Option : ");
+                my_putchar(opt);
+                my_putchar('\n');
+                break;
+            case 'A':
+                my_putstr("Option : ");
+                my_putchar(opt);
+                my_putchar('\n');
+                break;
+            case 'L':
+                my_putstr("Option : ");
+                my_putchar(opt);
+                my_putchar('\n');
+                break;
+            case '1':
+                my_putstr("Option : ");
+                my_putchar(opt);
+                my_putchar('\n');
+                break;
 
-                default: /* ? */
-                    //fprintf(stderr, "Usage: %s -lRd\n", argv[0]);
-                    my_putstr(argv[0]);
-                    my_putstr(" - Erreur !");
-                    my_putchar('\n');
-                    exit(EXIT_FAILURE);
+            default: /* ? */
+                //fprintf(stderr, "Usage: %s -lRd\n", argv[0]);
+                my_putstr(argv[0]);
+                my_putstr(" - Erreur !");
+                my_putchar('\n');
+                exit(EXIT_FAILURE);
             }
         }
     }
 
-    else {
+    else
+    {
         my_putstr("Pas d'options");
         my_putchar('\n');
         optind = 1;
     }
-
 
     //printf("optind=%d, argc =%d\n", optind, argc);
     if (argc == 1)
     {
         unique_dossier = 1;
     }
-
 
     // Garder en mémoire la valeur de optind puisque la suite des arguments contient la liste des fichier/repertoire passé en argument à ls
     my_debugnbr(optind);
@@ -192,9 +190,7 @@ int check_arg(int argc, char *argv[])
 
     //exit(EXIT_SUCCESS);
     return (0);
-
 }
-
 
 int base_ls(int argc, char *argv[])
 {
@@ -249,7 +245,7 @@ int my_strlen(const char *str)
     {
         letters++;
     }
-    return(letters);
+    return (letters);
 }
 
 int my_strcmp(const char *s1, const char *s2)
@@ -258,9 +254,9 @@ int my_strcmp(const char *s1, const char *s2)
 
     int diff = 0;
 
-    while(s1[cont] != '\0' && s2[cont]!= '\0' && s1[cont] != s2[cont])
+    while (s1[cont] != '\0' && s2[cont] != '\0' && s1[cont] != s2[cont])
     {
-        if(s1[cont] == s2[cont])
+        if (s1[cont] == s2[cont])
         {
             cont++;
         }
@@ -269,15 +265,14 @@ int my_strcmp(const char *s1, const char *s2)
             diff = (s1[cont] - s2[cont]);
         }
     }
-    return(diff);
+    return (diff);
 }
 
-void sortfiles(char *s1,char *s2)
+void sortfiles(char *s1, char *s2)
 {
     int cont = 0;
 
-
-    while(s1[cont] != '\0' || s2[cont]!= '\0')
+    while (s1[cont] != '\0' || s2[cont] != '\0')
     {
         if (s1[cont] == s2[cont])
         {
@@ -285,7 +280,7 @@ void sortfiles(char *s1,char *s2)
         }
         else if (s1[cont] > s2[cont])
         {
-            my_swap( &s1, &s2);
+            my_swap(&s1, &s2);
             break;
         }
         else
@@ -294,7 +289,6 @@ void sortfiles(char *s1,char *s2)
         }
     }
 }
-
 
 //Permet de tester les fonctions définies ci-dessus (écrire -DTEST lors de la compilation)
 #ifdef TEST

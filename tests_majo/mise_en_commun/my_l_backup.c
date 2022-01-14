@@ -34,30 +34,34 @@ void my_l(char *dir)
 	// 	exit(EXIT_FAILURE);        
 	// }
 
-	while ((d = readdir(dh)) != NULL)
-	{
-	 	struct stat modifdate;
-	 	stat(d->d_name, &modifdate);
-	 	char time[50];
-     	strftime(time, 50, "%b %e %H:%M", localtime(&modifdate.st_mtime));
+    //Partie à copier
+	while ((d = readdir(dh)) != NULL) {
+        //Partie à copier
+        struct stat modifdate;
+        stat(d->d_name, &modifdate);
+        char time[50];
+        strftime(time, 50, "%b %e %H:%M", localtime(&modifdate.st_mtime));
 
-		struct stat fileStat;
-		stat(d->d_name, &fileStat);
-		//si le programme rencontre des fichiers cachés.
+        struct stat fileStat;
+        stat(d->d_name, &fileStat);
+        //si le programme rencontre des fichiers cachés.
         if (d->d_name[0] == '.')
             continue;
 
-		if (S_ISDIR(fileStat.st_mode)) {
-			my_putchar('d');
-		}
-    	else if(S_ISCHR(fileStat.st_mode))
-        	my_putchar('c');
-		else if(S_ISBLK(fileStat.st_mode))
-			my_putchar('b');
-		else if(S_ISFIFO(fileStat.st_mode))
-			my_putchar('f');
-		else if(S_ISSOCK(fileStat.st_mode))
-			my_putchar('s');
+        if (S_ISDIR(fileStat.st_mode)) {
+            my_putchar('d');
+        } else if (S_ISDIR(buf.st_mode)) {
+            my_putchar("d");
+        } else if (S_ISCHR(buf.st_mode)) {
+            my_putchar("c");
+        } else if (S_ISBLK(buf.st_mode)) {
+            my_putchar("b");
+        } else if (S_ISFIFO(buf.st_mode)) {
+        my_putchar("f");
+        }
+		else if(S_ISSOCK(buf.st_mode)) {
+            my_putchar("s");
+        }
 		else{
 			my_putchar('-');
 		}
