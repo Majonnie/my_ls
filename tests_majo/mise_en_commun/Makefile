@@ -1,5 +1,6 @@
 SRC = ./main.c \
-	./fonctions.c
+	./fonctions.c \
+	./my_l.c
 OBJ = $(SRC:.c=.o)
 CFLAGS += -Wall -Werror -Wextra
 #define DEBUG

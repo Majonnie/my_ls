@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "fonctions.h"
+#include "my_l.h"
 
 
 void my_ls(const char *dir,int op_a,int op_A,int op_d, int argc, char *argv[]) //Ajouter au fur et à mesure un paramètre par option ?? --> booléens / int
@@ -18,20 +19,6 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int argc, char *argv[]) /
         my_putstr("Problème d'ouverture.\n");
         exit(1);
     }
-
-    //si on ne peut pas acceder au dossier, grace à la 3e librairie, on va gerer les erreurs.
-    // if (!dh)
-	// {
-	// 	if (errno = ENOENT) // "ENOENT Directory does not exist, or name is an empty string." Explication du man opendir.
-	// 	{
-	// 		perror("Directory doesn't exist"); //UTILISER STRERROR
-	// 	}
-	// 	else // pour les autres erreurs, on dit qu'on ne peut pas lire le dossier demandé.
-	// 	{
-	// 		perror("Unable to read directory");//UTILISER STRERROR
-	// 	}
-	// 	exit(EXIT_FAILURE);
-	// }
 
     //Il faut maintenant afficher les fichiers dans le dossier.
     while ((d = readdir(dh)) != NULL)
@@ -70,6 +57,12 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int argc, char *argv[]) /
 
 
         //Autres options
+
+        //Option -l
+        //METTRE EN COMMUN AVEC -A ET -a !!!
+        //my_l(dir, op_a, op_A); //problème dir
+        my_putstr(dir);
+        //my_l(".", op_a, op_A);
 
         //Option -d
         if (op_d == 1)

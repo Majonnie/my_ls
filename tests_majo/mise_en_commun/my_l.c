@@ -12,27 +12,12 @@
 #include <grp.h>
 #include "fonctions.h"
 
-void my_l(char *dir)
+void my_l(const char *dir, int op_a, int op_A)
 {
-	//int op_l = 0;
     struct dirent *d;  // on créé un objet dirent pour avoir accés à ses fonctions
     /*la fonction DIR permet de naviguer dans les fichiers
     la ligne suivante permet d'ouvrir le fichier demandé*/
 	DIR *dh = opendir(dir);  
-
-    //si on ne peut pas acceder au dossier, grace à la 3e librairie, on va gerer les erreurs.
-    // if (!dh)
-	// {
-	// 	if (errno = ENOENT) // "ENOENT Directory does not exist, or name is an empty string." Explication du man opendir.
-	// 	{
-    //         perror("Directory doesn't exist"); //UTILISER STRERROR
-	// 	}
-	// 	else // pour les autres erreurs, on dit qu'on ne peut pas lire le dossier demandé.
-	// 	{
-	// 		perror("Unable to read directory"); //UTILISER STRERROR
-	// 	}
-	// 	exit(EXIT_FAILURE);        
-	// }
 
 	while ((d = readdir(dh)) != NULL)
 	{
@@ -145,7 +130,9 @@ void my_l(char *dir)
     }
 }
 
+#ifdef TEST_L
 int main ()
 {
-	my_l(".");
+	my_l(".", a_isset, A_isset);
 }
+#endif
