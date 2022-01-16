@@ -28,9 +28,12 @@ void my_l(const char *dir, int op_a, int op_A)
 
 		struct stat fileStat;
 		stat(d->d_name, &fileStat);
+
+
 		//si le programme rencontre des fichiers cachés.
         if (d->d_name[0] == '.')
-            continue;
+            my_putstr("Fichier caché rencontré ! | ");
+            //continue;
 
 		if (S_ISDIR(fileStat.st_mode)) {
 			my_putchar('d');
@@ -111,9 +114,12 @@ void my_l(const char *dir, int op_a, int op_A)
 
     	struct stat sb;
 		stat(d->d_name, &sb);
+
+
         //si le programme rencontre des fichiers cachés.
         if (d->d_name[0] == '.')
-            continue;
+            my_putstr("Fichier caché rencontré ! | ");
+            //continue;
 
 		my_putnbr(hardlinks.st_nlink );
 		my_putchar(' ');
