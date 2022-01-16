@@ -1,2 +1,4 @@
 *.out
+*.o
+my_ls
 tests/*.out
