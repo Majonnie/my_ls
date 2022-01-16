@@ -101,7 +101,6 @@ int check_arg(int argc, char *argv[])
                 case 'l':
                     l_isset = 1;
                     my_debugstr("Option : ");
-                    my_putstr("test\n");
                     my_debugchar(opt);
                     break;
                 case 'R':
@@ -141,7 +140,6 @@ int check_arg(int argc, char *argv[])
                     break;
 
                 default: /* ? */
-                    //fprintf(stderr, "Usage: %s -lRd\n", argv[0]);
                     my_putstr(argv[0]);
                     my_putstr(" - Erreur !");
                     my_putchar('\n');
@@ -156,27 +154,25 @@ int check_arg(int argc, char *argv[])
         optind = 1;
     }
 
-
-    //printf("optind=%d, argc =%d\n", optind, argc);
     if (argc == 1)
     {
         aucun_argument = 1;
     }
 
 
-    // Garder en mémoire la valeur de optind puisque la suite des arguments contient la liste des fichier/repertoire passé en argument à ls
+    // Garder en mémoire la valeur de optind puisque la suite des arguments contient la liste des fichier/répertoires passés en argument à ls
     my_debugnbr(optind);
     my_debugnbr(argc);
 
     index_argument = optind;
     //Lecture des arguments (autres que des options)
-    if (optind < argc) //avant <=, corrigé en <
+    if (optind < argc)
     {
         for (int i = optind; i < argc; i++)
         {
-            my_putstr("Argument : ");
-            my_putstr(argv[i]);
-            my_putchar('\n');
+            my_debugstr("Argument : ");
+            my_debugstr(argv[i]);
+            my_debugchar('\n');
         }
     }
     /* Gérer les dossiers / fichiers passés en paramètres et le remplacement pas un . s'il n'y en pas */
@@ -202,46 +198,6 @@ int check_arg(int argc, char *argv[])
     //exit(EXIT_SUCCESS);
     return (0);
 
-}
-
-//Ça dégage
-int base_ls(int argc, char *argv[])
-{
-    struct dirent *sd;
-
-    DIR *rep = NULL;
-    //Remplacer argv[1] par le 1er (?) dossier après les options.
-    rep = opendir(argv[1]); /* Ouverture d'un dossier */
-
-    if (rep == NULL) /* Si le dossier n'a pas pu être ouvert */
-    {
-        //Gérer les différents types d'erreurs
-        my_putstr("Problème d'ouverture.\n");
-        exit(1); /* (mauvais chemin par exemple) */
-    }
-
-    my_debugstr("Le dossier a été ouvert avec succès\n");
-
-    while ((sd = readdir(rep)) != NULL)
-    {
-        /* Commencer par gérer les options -a et-A */
-
-        if (sd->d_name[0] != '.')
-        {
-            /* Changer l'affichage (en ligne la plupart du temps)*/
-            my_putstr(">>  ");
-            my_putstr(sd->d_name);
-            my_putchar('\n');
-        }
-    }
-
-    if (closedir(rep) == -1) /* S'il y a eu un souci avec la fermeture */
-    {
-        my_putstr("Problème de fermeture.\n");
-        exit(-1);
-    }
-
-    return (argc);
 }
 
 void my_swap(char **a, char **b)

@@ -23,13 +23,6 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int op_l, int argc, char 
     //Il faut maintenant afficher les fichiers dans le dossier.
     while ((d = readdir(dh)) != NULL)
     {
-
-        //Variables temporaires en attendant check_arg !!!
-        //int A_isset = 1;
-        //int a_isset = 0;
-        //op_A = 1;
-        //op_a = 0;
-
         //1) Si le programme rencontre des fichiers cachés. (options -a et -A)
         //Option -A
         if (op_A == 1 && op_a == 0)
@@ -53,15 +46,13 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int op_l, int argc, char 
         }
 
 
-        //Autres options
-
+        //2) Autres options
         //Option -l
         if (op_l == 1 && op_d == 0)
         {
             my_l((char *)dir, op_a, op_A); //problème dir
             exit(0);
         }
-
         //Option -d
         if (op_d == 1)
         {
@@ -82,7 +73,6 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int op_l, int argc, char 
             }
             exit(0);
         }
-
         //Sans option
         else {
             if (op_a == 0 && d->d_name[0] == '.') //Car pas d'option -a ou -A
