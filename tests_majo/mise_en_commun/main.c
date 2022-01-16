@@ -74,8 +74,8 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int op_l, int argc, char 
             exit(0);
         }
         //Sans option
-        else {
-            if (op_a == 0 && d->d_name[0] == '.') //Car pas d'option -a ou -A
+        if (op_a == 0 && op_A == 0 && op_d == 0 && op_l == 0) {
+            if (d->d_name[0] == '.') //Car pas d'option -a ou -A
                 continue;
             my_putstr(d->d_name);
             my_putchar('\n');
