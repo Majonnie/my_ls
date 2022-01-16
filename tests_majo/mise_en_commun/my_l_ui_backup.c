@@ -17,7 +17,7 @@ void my_l(const char *dir, int op_a, int op_A)
     struct dirent *d;  // on créé un objet dirent pour avoir accés à ses fonctions
     /*la fonction DIR permet de naviguer dans les fichiers
     la ligne suivante permet d'ouvrir le fichier demandé*/
-	DIR *dh = opendir(dir);
+	DIR *dh = opendir(dir);  
 
 	while ((d = readdir(dh)) != NULL)
 	{
@@ -29,21 +29,11 @@ void my_l(const char *dir, int op_a, int op_A)
 		struct stat fileStat;
 		stat(d->d_name, &fileStat);
 
-        //Gestion des options -a et -A
-        //Option -A
-        if (op_A == 1 && op_a == 0) {
-            if(my_strlen (d->d_name) == 1 && d->d_name[0] == '.')
-                continue;
-            else if(d->d_name[0] == '.' && d->d_name[1] == '.')
-                continue;
-        }
 
-        //Option -a ou aucune des deux options
-        else {
-            if (a_isset == 0 && d->d_name[0] == '.') { //Aucune des deux options
-                continue;
-            }
-        }
+		//si le programme rencontre des fichiers cachés.
+        if (d->d_name[0] == '.')
+            my_putstr("Fichier caché rencontré ! | ");
+            //continue;
 
 		if (S_ISDIR(fileStat.st_mode)) {
 			my_putchar('d');
@@ -68,13 +58,13 @@ void my_l(const char *dir, int op_a, int op_A)
 
 		if (fileStat.st_mode & S_IWUSR){
 			my_putchar('w');
-		} else{
+		}else{
 			my_putchar('-');
 		}
 
 		if (fileStat.st_mode & S_IXUSR){
 			my_putchar('x');
-		} else{
+		}else{
 			my_putchar('-');
 		}
 
@@ -86,13 +76,13 @@ void my_l(const char *dir, int op_a, int op_A)
 
 		if (fileStat.st_mode & S_IWGRP){
 			my_putchar('w');
-		} else{
+		}else{
 			my_putchar('-');
 		}
 
 		if (fileStat.st_mode & S_IXGRP){
 			my_putchar('x');
-		} else{
+		}else{
 			my_putchar('-');
 		}
 
@@ -104,7 +94,7 @@ void my_l(const char *dir, int op_a, int op_A)
 
 		if (fileStat.st_mode & S_IWOTH){
 			my_putchar('w');
-		} else{
+		}else{
 			my_putchar('-');
 		}
 
@@ -126,21 +116,10 @@ void my_l(const char *dir, int op_a, int op_A)
 		stat(d->d_name, &sb);
 
 
-        //Gestion des options -a et -A
-        //Option -A
-        if (op_A == 1 && op_a == 0) {
-            if(my_strlen (d->d_name) == 1 && d->d_name[0] == '.')
-                continue;
-            else if(d->d_name[0] == '.' && d->d_name[1] == '.')
-                continue;
-        }
-
-            //Option -a ou aucune des deux options
-        else {
-            if (a_isset == 0 && d->d_name[0] == '.') { //Aucune des deux options
-                continue;
-            }
-        }
+        //si le programme rencontre des fichiers cachés.
+        if (d->d_name[0] == '.')
+            my_putstr("Fichier caché rencontré ! | ");
+            //continue;
 
 		my_putnbr(hardlinks.st_nlink );
 		my_putchar(' ');
@@ -158,9 +137,8 @@ void my_l(const char *dir, int op_a, int op_A)
 }
 
 #ifdef TEST_L
-int main (int argc, char **argv)
+int main ()
 {
-    check_arg(argc,argv);
 	my_l(".", a_isset, A_isset);
 }
 #endif

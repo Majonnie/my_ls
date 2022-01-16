@@ -6,7 +6,7 @@
 #include "my_l.h"
 
 
-void my_ls(const char *dir,int op_a,int op_A,int op_d, int argc, char *argv[]) //Ajouter au fur et à mesure un paramètre par option ?? --> booléens / int
+void my_ls(const char *dir,int op_a,int op_A,int op_d, int op_l, int argc, char *argv[]) //Ajouter au fur et à mesure un paramètre par option ?? --> booléens / int
 {
     struct dirent *d;  // on créé un objet dirent pour avoir accés à ses fonctions
     /*la fonction DIR permet de naviguer dans les fichiers
@@ -34,7 +34,6 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int argc, char *argv[]) /
         //Option -A
         if (op_A == 1 && op_a == 0)
         {
-            //Partie à copier
             if(my_strlen (d->d_name) == 1 && d->d_name[0] == '.')
                 continue;
             else if(d->d_name[0] == '.' && d->d_name[1] == '.')
@@ -60,9 +59,12 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int argc, char *argv[]) /
 
         //Option -l
         //METTRE EN COMMUN AVEC -A ET -a !!!
-        //my_l(dir, op_a, op_A); //problème dir
-        my_putstr(dir);
-        //my_l(".", op_a, op_A);
+        if (op_l == 1 && op_d == 0)
+        {
+            //my_l(dir, op_a, op_A); //problème dir
+            my_putstr(dir);
+            //my_l(".", op_a, op_A);
+        }
 
         //Option -d
         if (op_d == 1)
@@ -85,13 +87,11 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int argc, char *argv[]) /
             exit(0);
         }
 
-        //Sans option ??
+        //Sans option
         else {
-            if (op_a == 0 && d->d_name[0] == '.')
+            if (op_a == 0 && d->d_name[0] == '.') //Car pas d'option -a ou -A
                 continue;
             my_putstr(d->d_name);
-            //my_putchar(' ');
-            //my_putchar(' ');
             my_putchar('\n');
         }
 
@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
     check_arg(argc,argv);
     if (aucun_argument == 1)
     {
-        my_ls(".",a_isset,A_isset,d_isset,argc,argv);
+        my_ls(".",a_isset,A_isset,d_isset,l_isset,argc,argv);
         my_putchar('\n');
     }
     else
@@ -113,14 +113,14 @@ int main(int argc, char *argv[])
         //my_putnbr(argc-index_argument);
         if (argc-index_argument == 1 || d_isset == 1)
         {
-            my_ls(argv[index_argument],a_isset,A_isset,d_isset,argc,argv);
+            my_ls(argv[index_argument],a_isset,A_isset,d_isset,l_isset,argc,argv);
         }
         else
         {
             for (int i = index_argument; i < argc; ++i) {
                 my_putstr(argv[i]);
                 my_putstr(" : \n");
-                my_ls(argv[i], a_isset, A_isset, d_isset, argc, argv);
+                my_ls(argv[i],a_isset,A_isset,d_isset,l_isset,argc,argv);
                 my_putchar('\n');
             }
         }
