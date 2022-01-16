@@ -42,8 +42,6 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int op_l, int argc, char 
             else
             {
                 my_putstr(d->d_name);
-                //my_putchar(' ');
-                //my_putchar(' ');
                 my_putchar('\n');
             }
         }
@@ -58,12 +56,10 @@ void my_ls(const char *dir,int op_a,int op_A,int op_d, int op_l, int argc, char 
         //Autres options
 
         //Option -l
-        //METTRE EN COMMUN AVEC -A ET -a !!!
         if (op_l == 1 && op_d == 0)
         {
-            //my_l(dir, op_a, op_A); //problème dir
-            my_putstr(dir);
-            //my_l(".", op_a, op_A);
+            my_l((char *)dir, op_a, op_A); //problème dir
+            exit(0);
         }
 
         //Option -d

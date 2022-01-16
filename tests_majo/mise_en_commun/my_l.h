@@ -9,7 +9,7 @@
 #define POOL_FUNC_L
 
 
-void my_l(char *dir, int op_a, int op_A);
+void my_l(const char *dir, int op_a, int op_A);
 
 
 #endif
