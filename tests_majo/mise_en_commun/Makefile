@@ -6,9 +6,9 @@ CFLAGS += -Wall -Werror -Wextra
 #define DEBUG
 NAME = my_ls
 
-# Ajouter -DTEST pour les tests du fichiers fonctions.c ; et -DDEBUG pour les messages de debug.
+# Ajouter -DTEST ou -DTEST_L pour les tests des fichiers fonctions.c ou my_l.c ; et -DDEBUG pour les messages de debug. --> hors Makefile
 $(NAME): $(OBJ)
-	gcc $(CFLAGS) -o $(NAME) -DDEBUG $(OBJ)
+	gcc $(CFLAGS) -o $(NAME) $(OBJ)
 
 all:	$(NAME)
 

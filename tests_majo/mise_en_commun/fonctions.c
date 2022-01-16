@@ -149,8 +149,7 @@ int check_arg(int argc, char *argv[])
     }
 
     else {
-        my_putstr("Pas d'options");
-        my_putchar('\n');
+        my_debugstr("Pas d'options");
         optind = 1;
     }
 

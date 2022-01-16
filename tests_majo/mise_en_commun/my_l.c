@@ -135,7 +135,7 @@ void my_l(const char *dir, int op_a, int op_A)
                 continue;
         }
 
-            //Option -a ou aucune des deux options
+        //Option -a ou aucune des deux options
         else {
             if (a_isset == 0 && d->d_name[0] == '.') { //Aucune des deux options
                 continue;
